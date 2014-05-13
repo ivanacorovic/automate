@@ -1,0 +1,11 @@
+- name: restart apache
+  sudo: true
+  service: name=apache2 state=restarted
+
+- name: restart nrpe
+  sudo: true
+  service: name=nagios-nrpe-server state=restarted
+
+- name: start elasticsearch
+  sudo: true
+  service: name=elasticsearch state=started
