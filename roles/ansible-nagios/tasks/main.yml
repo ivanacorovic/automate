@@ -61,7 +61,6 @@
 - tasks:
   include: build-nrpe.yml
 
-
 # - name: overwrite contacts.cfg
 #   sudo: true
 #   template: >
@@ -71,31 +70,17 @@
 #     group=nagios
 #     mode=640
 
-- name: create server.cfg
-  sudo: true
-  template: src=../templates/server.cfg.j2 dest=/usr/local/nagios/etc/objects/server.cfg
+# - name: Include commands2.cfg in commands.cfg
+#   sudo: true
+#   command: cat /usr/local/nagios/etc/objects/commands2.cfg > /usr/local/nagios/etc/objects/commands.cfg
 
-- name: create server.cfg
+- name: add permissions to commands2.cfg
   sudo: true
-  template: src=../templates/commands2.cfg.j2 dest=/usr/local/nagios/etc/objects/commands2.cfg
+  file: path=/usr/local/nagios/etc/objects/commands2.cfg mode=755 state=file
 
-- name: Include server.cfg in nagios.cfg
+- name: add permissions to server.cfg
   sudo: true
-  lineinfile: >
-    dest=/usr/local/nagios/etc/nagios.cfg 
-    regexp='' 
-    insertafter=EOF
-    line='cfg_file=/usr/local/nagios/etc/objects/server.cfg'
-    state=present
-
-- name: Include commands2.cfg in nagios.cfg
-  sudo: true
-  lineinfile: >
-    dest=/usr/local/nagios/etc/nagios.cfg 
-    regexp='' 
-    insertafter=EOF
-    line='cfg_file=/usr/local/nagios/etc/objects/commands2.cfg'
-    state=preset
+  file: path=/usr/local/nagios/etc/objects/server.cfg mode=755 state=file
 
 - name: restart nagios
   sudo: true

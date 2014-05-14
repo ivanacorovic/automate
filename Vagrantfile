@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     web.vm.box = "precise64"
     web.vm.box_url = "http://files.vagrantup.com/precise64.box"
     web.vm.network :private_network, ip: "10.33.33.33"
-    web.vm.network :forwarded_port, guest: 80, host: 8080
+    web.vm.network :forwarded_port, guest: 80, host: 1234
 
     web.vm.hostname = "dev.416.bike"
 
@@ -18,7 +18,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     end
 
     # web.vm.provision :ansible do |ansible|
-    #   ansible.playbook = "build-server.yml"
+    #   ansible.playbook = "build-app.yml"
     #   ansible.inventory_path = "hosts-vagrant"
     #   ansible.verbose = "vvvv"
     #   ansible.ask_sudo_pass = true

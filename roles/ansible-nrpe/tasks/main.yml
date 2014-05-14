@@ -39,11 +39,17 @@
 
 - name: Add ip's to npre.cfg
   sudo: true
-  lineinfile: dest=/etc/nagios/nrpe.cfg regexp='^allowed_hosts=127\.0\.0\.1' insertafter='allowed_hosts=127.0.0.1'  line=',{{nagios_host_ip}},{{nagios_nrpe_ip}}' state=present
+  lineinfile: dest=/etc/nagios/nrpe.cfg regexp='^allowed_hosts=127\.0\.0\.1' insertafter='allowed_hosts=127.0.0.1'  line='allowed_hosts=127.0.0.1,{{nagios_host_ip}},{{nagios_nrpe_ip}}' state=present
+
+- name: create commands3.cfg
+  sudo: true
+  template: src=../templates/commands3.cfg.j2 dest=/etc/nagios/commands3.cfg
+
+- name: Include commands3.cfg in nrpe.cfg
+  sudo: true
+  lineinfile: >
+    dest=/etc/nagios/nrpe.cfg
+    insertafter=EOF
+    line='include=/etc/nagios/commands3.cfg'
+    state=present
   notify: restart nrpe
-
-- tasks:
-  include: elasticsearch.yml
-
-- tasks:
-  include: nrpecommands.yml

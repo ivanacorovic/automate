@@ -3,15 +3,14 @@
 server_name: dev.416.bike
 
 # Used as nginx site name, rails directory, among other things
-full_app_name: pricemeter_production
+full_app_name: productpedia_production
 
 # Postgresql database settings
 
 database_host: localhost
-database_port: 5432
-database_name: pricemeter_production
+database_name: productpedia_production
 
-database_user: pricemeter
+database_user: productpedia
 database_password: "{{ lookup('password', inventory_dir + '/credentials/' + database_user + '.postgresql.txt length=20') }}"
 # Password is generarted on the fly, and later injected into database.yml.
 # See ./credentials/ for previously generated passwords.
