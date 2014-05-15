@@ -76,6 +76,14 @@
     dest=/usr/local/nagios/etc/nagios.cfg 
     line='cfg_file=/usr/local/nagios/etc/objects/server.cfg'
 
+- name: Remove old contacts.cfg_file
+  sudo: true
+  file: path=/usr/local/nagios/etc/objects/contacts.cfg state=absent
+
+- name: Add new contacts.cfg file
+  sudo: true
+  template: src=../templates/contacts.cfg.j2 dest=/usr/local/nagios/etc/objects/contacts.cfg
+
 - name: chmod  nagios:nagios /usr/local/nagios
   sudo: true
   file: path=/usr/local/nagios owner=nagios group=nagios

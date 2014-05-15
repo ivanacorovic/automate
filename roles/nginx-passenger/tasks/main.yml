@@ -13,6 +13,7 @@
 
 # Can't seem to use keyserver= apt_key feature here
 # See https://groups.google.com/forum/#!topic/ansible-project/8SEZWEQGTsg
+
 - name: Add Phusion Passenger repo key
   apt_key: url=http://keyserver.ubuntu.com/pks/lookup?op=get&fingerprint=on&search=0x561F9B9CAC40B2F7 state=present
   sudo: yes
@@ -56,6 +57,7 @@
   template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
   sudo: yes
 
+  
 - name: Start nginx
   service: name=nginx state=started
   sudo: yes

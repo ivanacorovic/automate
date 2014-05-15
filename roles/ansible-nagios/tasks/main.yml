@@ -82,6 +82,24 @@
   sudo: true
   file: path=/usr/local/nagios/etc/objects/server.cfg mode=755 state=file
 
+- name: add permissions to contacts.cfg
+  sudo: true
+  file: path=/usr/local/nagios/etc/objects/contacts.cfg mode=755 state=file
+
+- name: create ~/.msmtp file
+  sudo: true
+  template: src=../templates/.msmtprc.j2 dest=~/.msmtprc
+
+- name: Include sendmail msmtp
+  sudo: true
+  lineinfile: >
+    dest=~/.mailrc
+    line='set sendmail=/usr/bin/msmtp'
+
+- name: add permissions to .msmtprc
+  sudo: true
+  file: path=~/.msmtprc mode=600 state=file
+
 - name: restart nagios
   sudo: true
   service: name=nagios state=restarted

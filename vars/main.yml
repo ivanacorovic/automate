@@ -11,6 +11,7 @@ nagios_packages:
   - wget
   - php5-gd
   - daemon
+  - msmtp
 
 nagios_nrpe_packages:
   - nagios-nrpe-server
@@ -34,8 +35,8 @@ nagios_admin_name: 'Nagios Admin'
 nagios_admin_name2: 'Nagios Admin2'
 nagios_admin_name3: 'Nagios Admin3'
 nagios_host: nagios-doctor
-nagios_host_ip: 107.170.129.162
-nagios_nrpe_ip: 107.170.5.56
+nagios_host_ip: 107.170.106.199
+nagios_nrpe_ip: 107.170.129.162
 deploy: deployer
 password: $6$GqS1kM5vniwP9O$nVbjk0P6tZe8nJtNxI6Adjis1DWvSFsLgQcRsTeZ6vsScAX.sxaVgCPRAi0.HnhSF3i7k06xPyvMG1/0RbS3d0
 

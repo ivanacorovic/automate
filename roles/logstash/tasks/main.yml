@@ -1,0 +1,22 @@
+# - name: Install curl
+#   sudo: true
+#   apt: name=curl update_cache=yes state=present
+- name: Get logstash
+  sudo: true
+  get_url: >
+    dest={{nagios_build_directory}}
+    url={{logstash_tarball}}
+
+- name: Unpack logstash
+  sudo: yes
+  command: "tar -xvf logstash-1.4.0.tar.gz chdir=/tmp/"
+
+- name: create quickstart.conf
+  sudo: yes
+  copy: "src=../files/quickstart.conf dest={{nagios_build_directory}}/logstash-1.4.0"
+  notify: start elasticsearch
+
+- name: run quickstart
+  sudo: yes
+  command: bin/logstash -f quickstart.conf chdir=/tmp/logstash-1.4.0
+

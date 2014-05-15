@@ -4,5 +4,4 @@
   # user: intentionally blank
   remote_user: "{{ deploy }}"
   roles:
-    - { role: ansible-nrpe}
-    - { role: apache}
+    - { role: apache }
