@@ -82,13 +82,13 @@
   sudo: true
   file: path=/usr/local/nagios/etc/objects/server.cfg mode=755 state=file
 
-- name: add permissions to contacts.cfg
-  sudo: true
-  file: path=/usr/local/nagios/etc/objects/contacts.cfg mode=755 state=file
-
-- name: create ~/.msmtp file
+- name: create ~/.msmtprc file
   sudo: true
   template: src=../templates/.msmtprc.j2 dest=~/.msmtprc
+
+- name: create ~/.mailrc file
+  sudo: true
+  command: /bin/touch ~/.mailrc
 
 - name: Include sendmail msmtp
   sudo: true

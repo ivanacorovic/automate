@@ -1,5 +1,3 @@
----
-
 - hosts: es-server
   vars_files:
     - vars/main.yml

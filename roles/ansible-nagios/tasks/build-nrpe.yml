@@ -50,11 +50,11 @@
 
 - name: Xinetd nrpe configuration
   sudo: true
-  lineinfile: dest=/etc/xinetd.d/nrpe regexp='^only_from       = 127\.0\.0\.1' insertafter='only_from       = 127.0.0.1'  line=' {{nagios_host_ip}}' state=present
+  lineinfile: dest=/etc/xinetd.d/nrpe regexp='^only_from       = 127\.0\.0\.1' insertafter='only_from       = 127.0.0.1'  line='only_from        = 127.0.0.1 {{nagios_host_ip}}' state=present
 
 - name:   add iptable
   sudo: true
-  command: "iptables -A INPUT -s {{nagios_host}} -p tcp --dport 5666 -j ACCEPT"
+  command: "iptables -A INPUT -s {{nagios_host_ip}} -p tcp --dport 5666 -j ACCEPT"
 
 - name: create server.cfg
   sudo: true
@@ -75,14 +75,6 @@
   lineinfile: >
     dest=/usr/local/nagios/etc/nagios.cfg 
     line='cfg_file=/usr/local/nagios/etc/objects/server.cfg'
-
-- name: Remove old contacts.cfg_file
-  sudo: true
-  file: path=/usr/local/nagios/etc/objects/contacts.cfg state=absent
-
-- name: Add new contacts.cfg file
-  sudo: true
-  template: src=../templates/contacts.cfg.j2 dest=/usr/local/nagios/etc/objects/contacts.cfg
 
 - name: chmod  nagios:nagios /usr/local/nagios
   sudo: true

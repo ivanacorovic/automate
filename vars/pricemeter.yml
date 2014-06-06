@@ -1,16 +1,15 @@
 ---
 # Used by nginx for the vhost of the server
-server_name: 107.170.129.162
-
+server_name: 107.170.177.181
 # Used as nginx site name, rails directory, among other things
-full_app_name: productpedia_production
+full_app_name: pricemeter_production
 
 # Postgresql database settings
 
 database_host: localhost
-database_name: productpedia_production
+database_name: pricemeter_production
 
-database_user: productpedia
+database_user: pricemeter
 database_password: "{{ lookup('password', inventory_dir + '/credentials/' + database_user + '.postgresql.txt length=20') }}"
 # Password is generarted on the fly, and later injected into database.yml.
 # See ./credentials/ for previously generated passwords.

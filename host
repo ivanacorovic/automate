@@ -1,6 +1,6 @@
 [webservers]
-nagios-doctor ansible_ssh_host=107.170.106.199
-nagios-patient ansible_ssh_host=107.170.129.162
+nagios-doctor ansible_ssh_host={{nagios_host_ip}}
+nagios-patient ansible_ssh_host={{nagios_nrpe_ip}}
 
 [search]
-es-server ansible_ssh_host=107.170.129.162
+es-server ansible_ssh_host={{nagios_nrpe_ip}}

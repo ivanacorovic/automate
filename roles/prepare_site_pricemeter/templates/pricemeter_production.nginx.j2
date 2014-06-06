@@ -6,7 +6,7 @@ server {
 
   # warning: cargo cult server optimization ahead
   gzip on;
-  gzip_types text/plain text/html text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/json;
+  gzip_types text/plain text/css application/x-javascript text/xml application/xml application/xml+rss text/javascript application/json;
 
   location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
     expires 1y;
@@ -26,7 +26,7 @@ server {
   location /nginx_status {
     stub_status on;
     access_log   off;
-    allow MY_IP;
+    allow {{nagios_nrpe_ip}};
     deny all;
   }
 }

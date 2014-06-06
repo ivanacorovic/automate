@@ -12,12 +12,13 @@
 - hosts: nagios-patient
   vars_files:
     - vars/defaults.yml
-    - vars/productpedia.yml
+    - vars/pricemeter.yml
     - vars/main.yml
   remote_user: "{{ deploy }}"
   roles:
     ### Server provisioning roles:
     - { role: ansible-nrpe}
+    - { role: apache }
     - { role: linux-prereqs, tags: ['linux-prereqs'] }
     - { role: ufw, tags: ['ufw'] }
     - { role: postgresql, tags: ['postgresql'] }
@@ -27,4 +28,4 @@
     - { role: nginx-passenger, tags: ['nginx-passenger'] }
 
     ### Site specific roles:
-    - { role: prepare_site_productpedia, tags: ['prepare_site_productpedia'] }
+    - { role: prepare_site_pricemeter, tags: ['prepare_site_pricemeter'] }
